@@ -3,7 +3,6 @@ import 'package:flutter_svg/svg.dart';
 
 import '../../../../../core/utils/resource.dart';
 
-
 class SplashLogo extends StatelessWidget {
   const SplashLogo({
     super.key,
@@ -11,10 +10,15 @@ class SplashLogo extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return AspectRatio(
-      aspectRatio: 14 / 1,
-      child: SvgPicture.asset(
-        AppImages.assetsImagesBOOKLYSvg,
+    return ConstrainedBox(
+      constraints: BoxConstraints(
+        maxWidth: 600,
+      ),
+      child: SizedBox(
+        width: MediaQuery.of(context).size.width * .6,
+        child: SvgPicture.asset(
+          AppImages.assetsImagesBOOKLYSvg,
+        ),
       ),
     );
   }
