@@ -1,4 +1,4 @@
-import 'package:bookly_app/core/utils/app_styles.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/home_view_body.dart';
 import 'package:flutter/material.dart';
 
 class HomeView extends StatelessWidget {
@@ -9,7 +9,7 @@ class HomeView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Text('18Medium',style: AppStyles.montserrat18medium(context),),
+      body: HomeViewBody(),
     );
   }
 }
