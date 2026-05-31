@@ -73,7 +73,7 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle montserrat16medium(BuildContext context) {
+  static TextStyle montserrat16Medium(BuildContext context) {
     return TextStyle(
       fontSize: responsiveFontSize(
         context,
@@ -107,7 +107,7 @@ abstract class AppStyles {
     );
   }
 
-  static TextStyle montserrat14medium(BuildContext context) {
+  static TextStyle montserrat14Medium(BuildContext context) {
     return TextStyle(
       fontSize: responsiveFontSize(
         context,
@@ -118,12 +118,21 @@ abstract class AppStyles {
       color: Colors.white.withOpacity(.7),
     );
   }
+  static TextStyle montserrat20Regular(BuildContext context) {
+    return TextStyle(
+      fontSize: responsiveFontSize(
+        context,
+        fontSize: 20,
+      ),
+      fontFamily: 'Montserrat',
+    );
+  }
 }
 
 double responsiveFontSize(BuildContext context, {required double fontSize}) {
   final double responsiveFontSize = scaleFactor(context) * fontSize;
 
-  final double lowerLimit = fontSize * .8;
+  final double lowerLimit = fontSize * .9;
   final double upperLimit = fontSize * 1.2;
 
   return responsiveFontSize.clamp(lowerLimit, upperLimit);
@@ -132,7 +141,7 @@ double responsiveFontSize(BuildContext context, {required double fontSize}) {
 double scaleFactor(BuildContext context) {
   final width = MediaQuery.sizeOf(context).width;
   if (width < SizeConfig.tablet) {
-    return width / 700;
+    return width / 1000;
   } else if (width < SizeConfig.desktop) {
     return width / 1000;
   } else {

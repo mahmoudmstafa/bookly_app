@@ -2,21 +2,35 @@ import 'package:bookly_app/core/utils/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-
 class CustomAppbar extends StatelessWidget {
-  const CustomAppbar({super.key, required this.rightIcon, required this.leftIcon});
+  const CustomAppbar({
+    super.key,
+    required this.rightIcon,
+    required this.leftIcon,
+  });
 
-  final String rightIcon , leftIcon;
+  final String rightIcon, leftIcon;
+
   @override
   Widget build(BuildContext context) {
-    return Row(
-      mainAxisAlignment: MainAxisAlignment.spaceBetween,
+    return Column(
       children: [
-        SvgPicture.asset(
-          rightIcon,
+        SizedBox(
+          height: 50,
         ),
-        SvgPicture.asset(
-          leftIcon,
+        Row(
+          mainAxisAlignment: MainAxisAlignment.spaceBetween,
+          children: [
+            SvgPicture.asset(
+              rightIcon,
+            ),
+            SvgPicture.asset(
+              leftIcon,
+            ),
+          ],
+        ),
+        SizedBox(
+          height: 30,
         ),
       ],
     );

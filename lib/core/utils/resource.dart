@@ -10,6 +10,8 @@ class AppImages {
   /// ![preview](file://D:\all_flutter\welcome_back\bookly_app\assets\images\Book%201%20Hightligh.svg)
   static const String assetsImagesBook1HightlighSvg =
       'assets/images/Book 1 Hightligh.svg';
+static const String assetsImagesBook1HightlighPng =
+      'assets/images/Book 1 Hightligh.png';
 
   /// ![preview](file://D:\all_flutter\welcome_back\bookly_app\assets\images\Group%202.svg)
   static const String assetsImagesGroup2Svg = 'assets/images/Group 2.svg';
