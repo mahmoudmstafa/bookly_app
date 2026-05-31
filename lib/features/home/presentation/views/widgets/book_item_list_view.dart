@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import 'book_item.dart';
+import '../../../../../core/widgets/custom_book_item_image.dart';
 
 
 class ItemListView extends StatelessWidget {
@@ -17,7 +17,12 @@ class ItemListView extends StatelessWidget {
           scrollDirection: Axis.horizontal,
           itemCount: 10,
           itemBuilder: (context, index) {
-            return BookItem();
+            return Padding(
+              padding: const EdgeInsets.only(right: 5.0),
+              child: CustomBookItemImage(
+                aspectRatio: 130 / 193,
+              ),
+            );
           },
         ),
       ),

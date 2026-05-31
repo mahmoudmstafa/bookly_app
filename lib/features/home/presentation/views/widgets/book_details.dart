@@ -2,7 +2,7 @@ import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_styles.dart';
-import 'best_seller_evaluation.dart';
+import '../../../../../core/widgets/custom_best_seller_evaluation.dart';
 
 
 class BookDetails extends StatelessWidget {
@@ -37,7 +37,7 @@ class BookDetails extends StatelessWidget {
               price,
               style: AppStyles.montserrat20Bold(context),
             ),
-            BestSellerEvaluation(),
+            CustomBestSellerEvaluation(),
           ],
         ),
       ],

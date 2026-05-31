@@ -1,19 +1,20 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
-import '../../../../../core/utils/app_styles.dart';
-import '../../../../../core/utils/resource.dart';
+import '../utils/app_styles.dart';
+import '../utils/resource.dart';
 
 
 
-class BestSellerEvaluation extends StatelessWidget {
-  const BestSellerEvaluation({
+class CustomBestSellerEvaluation extends StatelessWidget {
+  const CustomBestSellerEvaluation({
     super.key,
   });
 
   @override
   Widget build(BuildContext context) {
     return Row(
+      mainAxisAlignment: MainAxisAlignment.center,
       children: [
         SvgPicture.asset(
           AppImages.assetsImagesStarSvg,

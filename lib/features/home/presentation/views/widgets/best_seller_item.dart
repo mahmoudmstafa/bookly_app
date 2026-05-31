@@ -1,4 +1,5 @@
 import 'package:auto_size_text/auto_size_text.dart';
+import 'package:bookly_app/core/widgets/custom_book_item_image.dart';
 import 'package:bookly_app/features/book_details/presentation/views/book_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
@@ -7,9 +8,8 @@ import 'package:get/get_core/src/get_main.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/utils/resource.dart';
-import 'best_seller_evaluation.dart';
+import '../../../../../core/widgets/custom_best_seller_evaluation.dart';
 import 'book_details.dart';
-import 'image_best_seller.dart';
 
 class BestSellerItem extends StatelessWidget {
   const BestSellerItem({super.key});
@@ -24,8 +24,9 @@ class BestSellerItem extends StatelessWidget {
           aspectRatio: 307 / 105,
           child: Row(
             children: [
-              ImageBestSeller(
-                image: AppImages.assetsImagesBook1HightlighPng,
+              CustomBookItemImage(
+                aspectRatio: 70 / 105,
+                borderRadius: 8,
               ),
               SizedBox(
                 width: 30,
@@ -45,10 +46,10 @@ class BestSellerItem extends StatelessWidget {
   }
 
   void navigateToBookDetailsView() {
-      Get.to(
-        BookDetailsView(),
-        transition: Transition.zoom,
-        duration: kDuration,
-      );
-    }
+    Get.to(
+      BookDetailsView(),
+      transition: Transition.zoom,
+      duration: kDuration,
+    );
+  }
 }
