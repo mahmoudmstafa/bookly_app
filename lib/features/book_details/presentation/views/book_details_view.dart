@@ -3,6 +3,7 @@ import 'package:bookly_app/core/utils/constant.dart';
 import 'package:bookly_app/core/widgets/custom_appbar.dart';
 import 'package:bookly_app/features/book_details/presentation/views/widgets/book_details_list_view_items.dart';
 import 'package:bookly_app/features/book_details/presentation/views/widgets/book_details_section.dart';
+import 'package:bookly_app/features/book_details/presentation/views/widgets/book_details_view_body.dart';
 import 'package:bookly_app/features/book_details/presentation/views/widgets/buttons_book_details_view.dart';
 import 'package:bookly_app/features/book_details/presentation/views/widgets/custom_button.dart';
 import 'package:bookly_app/features/book_details/presentation/views/widgets/you_can_also_like_section.dart';
@@ -22,32 +23,9 @@ class BookDetailsView extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      body: Padding(
-        padding: const EdgeInsets.symmetric(horizontal: 30),
-        child: SingleChildScrollView(
-          physics: BouncingScrollPhysics(),
-          child: Column(
-            children: [
-              CustomAppbar(
-                rightIcon: AppImages.assetsImagesGroup2Svg,
-                onTapRightIcon: navigateToHomeView,
-                leftIcon: AppImages.assetsImagesIcCartSvg,
-              ),
-              BookDetailsSection(),
-              ButtonsBookDetailsView(),
-              YouCanAlsoLikeSection(),
-            ],
-          ),
-        ),
-      ),
+      body: BookDetailsViewBody(),
     );
   }
 
-  void navigateToHomeView() {
-    Get.to(
-      HomeView(),
-      transition: Transition.native,
-      duration: kDuration,
-    );
-  }
+
 }
