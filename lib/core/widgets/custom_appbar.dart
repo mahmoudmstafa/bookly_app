@@ -7,9 +7,12 @@ class CustomAppbar extends StatelessWidget {
     super.key,
     required this.rightIcon,
     required this.leftIcon,
+    this.onTapRightIcon,
+    this.onTapLeftIcon,
   });
 
   final String rightIcon, leftIcon;
+  final void Function()? onTapRightIcon, onTapLeftIcon;
 
   @override
   Widget build(BuildContext context) {
@@ -21,11 +24,17 @@ class CustomAppbar extends StatelessWidget {
         Row(
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
-            SvgPicture.asset(
-              rightIcon,
+            GestureDetector(
+              onTap: onTapRightIcon,
+              child: SvgPicture.asset(
+                rightIcon,
+              ),
             ),
-            SvgPicture.asset(
-              leftIcon,
+            GestureDetector(
+              onTap: onTapLeftIcon,
+              child: SvgPicture.asset(
+                leftIcon,
+              ),
             ),
           ],
         ),
