@@ -30,7 +30,7 @@ class ItemListViewAndBestSellerSection extends StatelessWidget {
             height: 22,
           ),
         ),
-        BestSellerItemSliverList()
+        BestSellerItemSliverList(),
       ],
     );
   }

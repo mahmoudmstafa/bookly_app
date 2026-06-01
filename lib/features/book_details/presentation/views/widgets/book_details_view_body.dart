@@ -39,7 +39,7 @@ class BookDetailsViewBody extends StatelessWidget {
   void navigateToHomeView() {
     Get.to(
       HomeView(),
-      transition: Transition.native,
+      transition: Transition.cupertinoDialog,
       duration: kDuration,
     );
   }

@@ -25,15 +25,15 @@ class CustomAppbar extends StatelessWidget {
           mainAxisAlignment: MainAxisAlignment.spaceBetween,
           children: [
             GestureDetector(
-              onTap: onTapRightIcon,
-              child: SvgPicture.asset(
-                rightIcon,
-              ),
-            ),
-            GestureDetector(
               onTap: onTapLeftIcon,
               child: SvgPicture.asset(
                 leftIcon,
+              ),
+            ),
+            GestureDetector(
+              onTap: onTapRightIcon,
+              child: SvgPicture.asset(
+                rightIcon,
               ),
             ),
           ],

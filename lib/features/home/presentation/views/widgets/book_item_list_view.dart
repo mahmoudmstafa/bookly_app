@@ -14,7 +14,7 @@ class ItemListView extends StatelessWidget {
   Widget build(BuildContext context) {
     return SliverToBoxAdapter(
       child: SizedBox(
-        height: MediaQuery.of(context).size.width * .5,
+        height: MediaQuery.of(context).size.height * .28,
         child: ListView.separated(
           separatorBuilder: (_, _) => SizedBox(
             width: 5,

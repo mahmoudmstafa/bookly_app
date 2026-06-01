@@ -11,7 +11,7 @@ class BookDetailsListViewItems extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return SizedBox(
-      height: MediaQuery.sizeOf(context).width * .40,
+      height: MediaQuery.sizeOf(context).height * .2,
       child: ListView.separated(
         padding: EdgeInsets.zero,
         physics: BouncingScrollPhysics(),
