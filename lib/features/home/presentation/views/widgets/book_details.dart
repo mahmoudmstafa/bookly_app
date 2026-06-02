@@ -46,7 +46,7 @@ class BookDetails extends StatelessWidget {
                 style: AppStyles.montserrat18Semibold(context),
               ),
             ),
-            CustomBestSellerEvaluation(),
+            const CustomBestSellerEvaluation(),
           ],
         ),
       ],

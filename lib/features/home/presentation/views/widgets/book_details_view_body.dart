@@ -25,7 +25,7 @@ class BookDetailsViewBody extends StatelessWidget {
     return Padding(
       padding: const EdgeInsets.symmetric(horizontal: 30),
       child: SingleChildScrollView(
-        physics: BouncingScrollPhysics(),
+        physics: const BouncingScrollPhysics(),
         child: Column(
           children: [
             CustomAppbar(
@@ -36,8 +36,8 @@ class BookDetailsViewBody extends StatelessWidget {
             BookDetailsSection(
               bookModel: bookModel,
             ),
-            ButtonsBookDetailsView(),
-            YouCanAlsoLikeSection(),
+            const ButtonsBookDetailsView(),
+            const YouCanAlsoLikeSection(),
           ],
         ),
       ),
@@ -46,7 +46,7 @@ class BookDetailsViewBody extends StatelessWidget {
 
   void navigateToHomeView() {
     Get.to(
-      HomeView(),
+      const HomeView(),
       transition: Transition.cupertinoDialog,
       duration: kDuration,
     );

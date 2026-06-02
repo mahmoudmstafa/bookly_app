@@ -1,9 +1,7 @@
-import 'package:bookly_app/core/widgets/custom_circle_loading.dart';
 import 'package:bookly_app/core/widgets/custom_error_message.dart';
 import 'package:bookly_app/core/widgets/custom_text_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, BlocBuilder;
-import 'package:flutter_svg/svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
@@ -52,19 +50,19 @@ class _SearchBookViewBodyState extends State<SearchBookViewBody> {
             enabledBorderColor: Colors.white,
             focusedBorderColor: Colors.white,
           ),
-          SizedBox(
+          const SizedBox(
             height: 40,
           ),
           Text(
             'Search Result :',
             style: AppStyles.montserrat20Bold(context),
           ),
-          SizedBox(
+          const SizedBox(
             height: 22,
           ),
           Expanded(
             child: CustomScrollView(
-              physics: BouncingScrollPhysics(),
+              physics: const BouncingScrollPhysics(),
               slivers: [
                 BlocBuilder<SearchBookCubit, SearchBookState>(
                   builder: (context, state) {
@@ -110,7 +108,7 @@ class _SearchBookViewBodyState extends State<SearchBookViewBody> {
 
   void navigateToHomeView() {
     Get.to(
-      HomeView(),
+      const HomeView(),
       transition: Transition.cupertinoDialog,
       duration: kDuration,
     );

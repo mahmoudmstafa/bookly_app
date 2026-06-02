@@ -3,7 +3,6 @@ import 'package:bookly_app/features/search_book/data/repos/search_book_repo_imp.
 import 'package:dio/dio.dart';
 import 'package:get_it/get_it.dart';
 
-import '../../features/search_book/data/repos/search_book_repo.dart';
 import '../service/api_service.dart';
 
 GetIt getIt = GetIt.instance;

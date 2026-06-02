@@ -95,7 +95,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
       cursorColor: widget.cursorColor,
       textDirection: _textDirection,
       decoration: InputDecoration(
-        contentPadding: EdgeInsets.symmetric(
+        contentPadding: const EdgeInsets.symmetric(
           horizontal: 16,
           vertical: 16,
         ),
@@ -107,7 +107,7 @@ class _CustomTextFormFieldState extends State<CustomTextFormField> {
         //       color: Colors.black,
         //       size: 28,
         //     ),
-        labelStyle: TextStyle(
+        labelStyle: const TextStyle(
           color: Colors.black,
           fontWeight: FontWeight.bold,
           fontSize: 24,

@@ -25,7 +25,7 @@ class HomeViewBody extends StatelessWidget {
             rightIcon: AppImages.assetsImagesIcSearchSvg,
             leftIcon: AppImages.assetsImagesBOOKLYSvg,
           ),
-          Expanded(
+          const Expanded(
             child: ItemListViewAndLatestBooksSection(),
           ),
         ],
@@ -35,7 +35,7 @@ class HomeViewBody extends StatelessWidget {
 
   void navigateToSearchBookView() {
     Get.to(
-      SearchBookView(),
+      const SearchBookView(),
       transition: Transition.fade,
       duration: kDuration,
     );

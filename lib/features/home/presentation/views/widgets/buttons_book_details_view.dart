@@ -13,7 +13,7 @@ class ButtonsBookDetailsView extends StatelessWidget {
   Widget build(BuildContext context) {
     return Row(
       children: [
-        Expanded(
+        const Expanded(
           child: CustomButton(
             text: 'FREE',
             backgroundColor: Colors.white,
@@ -31,7 +31,7 @@ class ButtonsBookDetailsView extends StatelessWidget {
             isRight: true,
             textStyle: AppStyles.montserrat20Regular(context),
             text: 'Free preview',
-            backgroundColor: Color(
+            backgroundColor: const Color(
               0xffEF8262,
             ),
           ),

@@ -2,13 +2,9 @@ import 'package:bookly_app/core/routes/app_pages.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/sliding_text_animation.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/splash_logo.dart';
 import 'package:flutter/material.dart';
-import 'package:flutter_svg/flutter_svg.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
-import 'package:get/get_navigation/src/routes/transitions_type.dart';
 
-import '../../../../../core/utils/resource.dart';
-import '../../../../home/presentation/views/home_view.dart';
 
 class SplashViewBody extends StatefulWidget {
   const SplashViewBody({super.key});
@@ -45,8 +41,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            SplashLogo(),
-            SizedBox(
+            const SplashLogo(),
+            const SizedBox(
               height: 10,
             ),
             SlidingTextAnimation(

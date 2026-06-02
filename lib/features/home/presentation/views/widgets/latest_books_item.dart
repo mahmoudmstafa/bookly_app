@@ -1,16 +1,9 @@
-import 'package:auto_size_text/auto_size_text.dart';
 import 'package:bookly_app/core/routes/app_pages.dart';
 import 'package:bookly_app/core/widgets/custom_book_item_image.dart';
-import 'package:bookly_app/features/home/presentation/views/book_details_view.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get.dart';
-import 'package:get/get_core/src/get_main.dart';
 
 import '../../../../../core/models/book_model.dart';
-import '../../../../../core/utils/app_styles.dart';
-import '../../../../../core/utils/constant.dart';
-import '../../../../../core/utils/resource.dart';
-import '../../../../../core/widgets/custom_best_seller_evaluation.dart';
 import 'book_details.dart';
 
 class LatestBooksItem extends StatelessWidget {
@@ -33,7 +26,7 @@ class LatestBooksItem extends StatelessWidget {
                 aspectRatio: 70 / 105,
                 borderRadius: 8,
               ),
-              SizedBox(
+              const SizedBox(
                 width: 30,
               ),
               Expanded(

@@ -19,14 +19,14 @@ class CustomBestSellerEvaluation extends StatelessWidget {
         SvgPicture.asset(
           AppImages.assetsImagesStarSvg,
         ),
-        SizedBox(
+        const SizedBox(
           width:6,
         ),
         Text(
           '4.8',
           style: AppStyles.montserrat16Medium(context),
         ),
-        SizedBox(
+        const SizedBox(
           width:6,
         ),
         Text(

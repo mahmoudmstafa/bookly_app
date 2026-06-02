@@ -5,7 +5,6 @@ import 'package:get/get_navigation/src/extension_navigation.dart';
 
 import '../../../../../core/models/book_model.dart';
 import '../../../../../core/utils/app_styles.dart';
-import '../../../../../core/utils/constant.dart';
 import '../../../../../core/widgets/custom_best_seller_evaluation.dart';
 import '../../../../../core/widgets/custom_book_item_image.dart';
 
@@ -27,7 +26,7 @@ class BookDetailsSection extends StatelessWidget {
             aspectRatio: 162 / 243,
           ),
         ),
-        SizedBox(
+        const SizedBox(
           height: 45,
         ),
         AutoSizeText(
@@ -38,7 +37,7 @@ class BookDetailsSection extends StatelessWidget {
           bookModel.title ?? 'Title UnKnown',
           style: AppStyles.regular30Roboto(context),
         ),
-        SizedBox(
+        const SizedBox(
           height: 12,
         ),
         AutoSizeText(
@@ -49,11 +48,11 @@ class BookDetailsSection extends StatelessWidget {
           textAlign: TextAlign.center,
           style: AppStyles.montserrat18medium(context),
         ),
-        SizedBox(
+        const SizedBox(
           height: 19,
         ),
-        CustomBestSellerEvaluation(),
-        SizedBox(
+        const CustomBestSellerEvaluation(),
+        const SizedBox(
           height: 40,
         ),
       ],

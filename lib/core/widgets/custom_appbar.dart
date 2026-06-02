@@ -1,4 +1,3 @@
-import 'package:bookly_app/core/utils/resource.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_svg/svg.dart';
 
@@ -18,7 +17,7 @@ class CustomAppbar extends StatelessWidget {
   Widget build(BuildContext context) {
     return Column(
       children: [
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         Row(
@@ -38,7 +37,7 @@ class CustomAppbar extends StatelessWidget {
             ),
           ],
         ),
-        SizedBox(
+        const SizedBox(
           height: 30,
         ),
       ],

@@ -14,18 +14,18 @@ class YouCanAlsoLikeSection extends StatelessWidget {
     return Column(
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
-        SizedBox(
+        const SizedBox(
           height: 50,
         ),
         Text(
           'You can also like',
           style: AppStyles.montserrat14Semibold(context),
         ),
-        SizedBox(
+        const SizedBox(
           height: 18,
         ),
-        YouCanAlsoLikeListView(),
-        SizedBox(
+        const YouCanAlsoLikeListView(),
+        const SizedBox(
           height: 40,
         ),
       ],

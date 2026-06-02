@@ -5,7 +5,6 @@ import 'package:meta/meta.dart';
 
 import '../../../../../../core/errors/failure.dart';
 import '../../../../../../core/models/book_model.dart';
-import '../../../../data/repos/home_repo.dart';
 
 part 'fetch_latest_books_state.dart';
 

@@ -7,9 +7,10 @@ import '../../../../../core/widgets/custom_book_item_image.dart';
 
 class YouCanAlsoLikeListView extends StatelessWidget {
   const YouCanAlsoLikeListView({
-    super.key,
+    super.key, this.onTap,
   });
 
+  final VoidCallback? onTap;
   @override
   Widget build(BuildContext context) {
     return SizedBox(
@@ -23,9 +24,9 @@ class YouCanAlsoLikeListView extends StatelessWidget {
               if (state is FetchYouCanAlsoLikeBooksSuccess) {
                 return ListView.separated(
                   padding: EdgeInsets.zero,
-                  physics: BouncingScrollPhysics(),
+                  physics: const BouncingScrollPhysics(),
                   scrollDirection: Axis.horizontal,
-                  itemCount: 10,
+                  itemCount: state.books.length,
                   separatorBuilder: (_, _) => const SizedBox(width: 6),
                   itemBuilder: (context, index) {
                     return CustomBookItemImage(
@@ -40,7 +41,7 @@ class YouCanAlsoLikeListView extends StatelessWidget {
                   errMessage: state.errMessage,
                 );
               } else {
-                return Center(
+                return const Center(
                   child: CircularProgressIndicator(),
                 );
               }

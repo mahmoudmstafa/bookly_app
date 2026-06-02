@@ -14,9 +14,10 @@ class AdaptiveLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-
     return LayoutBuilder(
       builder: (context, constrains) {
+        log('MediaQuery --> ${MediaQuery.of(context).size.width.round()}');
+
         if (constrains.maxWidth < 600) {
           return mobileLayout(context);
         } else if (constrains.maxWidth < 900) {
@@ -29,5 +30,4 @@ class AdaptiveLayout extends StatelessWidget {
   }
 }
 
-// log('MediaQuery --> ${MediaQuery.of(context).size.width.round()}');
 // log('maxWidth --> ${constrains.maxWidth.round()}');

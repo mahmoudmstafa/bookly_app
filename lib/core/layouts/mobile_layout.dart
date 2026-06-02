@@ -9,6 +9,6 @@ class MobileLayout extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    return SplashView();
+    return const SplashView();
   }
 }
