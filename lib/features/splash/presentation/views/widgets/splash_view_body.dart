@@ -1,3 +1,4 @@
+import 'package:bookly_app/core/routes/app_pages.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/sliding_text_animation.dart';
 import 'package:bookly_app/features/splash/presentation/views/widgets/splash_logo.dart';
 import 'package:flutter/material.dart';
@@ -72,9 +73,8 @@ class _SplashViewBodyState extends State<SplashViewBody>
 
   void navigateToHomeView() {
     Future.delayed(const Duration(seconds: 3), () {
-      Get.to(
-        () => HomeView(),
-        transition: Transition.fadeIn,
+      Get.toNamed(
+        AppPages.home,
       );
     });
   }

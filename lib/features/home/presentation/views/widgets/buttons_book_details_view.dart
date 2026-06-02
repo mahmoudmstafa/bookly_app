@@ -15,7 +15,7 @@ class ButtonsBookDetailsView extends StatelessWidget {
       children: [
         Expanded(
           child: CustomButton(
-            text: '19.99€',
+            text: 'FREE',
             backgroundColor: Colors.white,
           ),
         ),

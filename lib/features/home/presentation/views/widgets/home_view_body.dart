@@ -1,6 +1,6 @@
 import 'package:bookly_app/core/utils/resource.dart';
 import 'package:bookly_app/core/widgets/custom_appbar.dart';
-import 'package:bookly_app/features/home/presentation/views/widgets/item_list_view_and_best_seller_section.dart';
+import 'package:bookly_app/features/home/presentation/views/widgets/item_list_view_and_latest_books_section.dart';
 import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
@@ -26,7 +26,7 @@ class HomeViewBody extends StatelessWidget {
             leftIcon: AppImages.assetsImagesBOOKLYSvg,
           ),
           Expanded(
-            child: ItemListViewAndBestSellerSection(),
+            child: ItemListViewAndLatestBooksSection(),
           ),
         ],
       ),

@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../../core/utils/app_styles.dart';
-import 'book_details_list_view_items.dart';
+import 'you_can_also_list_view.dart';
 
 
 class YouCanAlsoLikeSection extends StatelessWidget {
@@ -24,7 +24,7 @@ class YouCanAlsoLikeSection extends StatelessWidget {
         SizedBox(
           height: 18,
         ),
-        BookDetailsListViewItems(),
+        YouCanAlsoLikeListView(),
         SizedBox(
           height: 40,
         ),

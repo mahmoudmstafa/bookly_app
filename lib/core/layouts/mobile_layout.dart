@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../splash/presentation/views/splash_view.dart';
+import '../../features/splash/presentation/views/splash_view.dart';
+
 
 
 class MobileLayout extends StatelessWidget {

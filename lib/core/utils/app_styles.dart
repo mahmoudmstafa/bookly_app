@@ -125,6 +125,7 @@ abstract class AppStyles {
         fontSize: 20,
       ),
       fontFamily: 'Montserrat',
+      color: Colors.white,
     );
   }
 }
