@@ -1,9 +1,12 @@
+import 'package:auto_size_text/auto_size_text.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
+import 'package:shimmer/shimmer.dart';
 
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/widgets/custom_circle_loading.dart';
 import '../../../../../core/widgets/custom_error_message.dart';
+import '../../../../../core/widgets/custom_text_loading.dart';
 import '../../manager/cubits/fetch_latest_books_cubit/fetch_latest_books_cubit.dart';
 import 'latest_books_item_sliver_list.dart';
 import 'book_item_list_view.dart';
@@ -47,10 +50,13 @@ class ItemListViewAndLatestBooksSection extends StatelessWidget {
               );
             } else {
               return SliverToBoxAdapter(
-                child: CustomCircleLoading(
-                  color: Colors.white,
-                ),
+                child: CustomTextLoading(),
               );
+              // return SliverToBoxAdapter(
+              //   child: CustomCircleLoading(
+              //     color: Colors.white,
+              //   ),
+              // );
             }
           },
         ),
@@ -58,3 +64,4 @@ class ItemListViewAndLatestBooksSection extends StatelessWidget {
     );
   }
 }
+

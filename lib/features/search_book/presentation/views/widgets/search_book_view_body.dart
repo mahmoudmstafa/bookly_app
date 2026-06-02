@@ -1,5 +1,6 @@
 import 'package:bookly_app/core/widgets/custom_circle_loading.dart';
 import 'package:bookly_app/core/widgets/custom_error_message.dart';
+import 'package:bookly_app/core/widgets/custom_text_loading.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, BlocBuilder;
 import 'package:flutter_svg/svg.dart';
@@ -16,8 +17,15 @@ import '../../../../home/presentation/views/widgets/latest_books_item_sliver_lis
 import '../../manager/cubits/search_book_cubit/search_book_cubit.dart';
 import 'custom_text_form_field.dart';
 
-class SearchBookViewBody extends StatelessWidget {
+class SearchBookViewBody extends StatefulWidget {
   const SearchBookViewBody({super.key});
+
+  @override
+  State<SearchBookViewBody> createState() => _SearchBookViewBodyState();
+}
+
+class _SearchBookViewBodyState extends State<SearchBookViewBody> {
+  String? dataFromUser;
 
   @override
   Widget build(BuildContext context) {
@@ -35,6 +43,7 @@ class SearchBookViewBody extends StatelessWidget {
           ),
           CustomTextFormField(
             onSubmitted: (data) {
+              dataFromUser = data;
               BlocProvider.of<SearchBookCubit>(context).searchBook(
                 query: data ?? 'general',
               );
@@ -80,9 +89,13 @@ class SearchBookViewBody extends StatelessWidget {
                       );
                     } else {
                       return SliverToBoxAdapter(
-                        child: CustomCircleLoading(
-                          color: Colors.white,
+                        child: CustomTextLoading(
+                          messageLoading:
+                              'Please Wait ... \n Loading search result ! \n " $dataFromUser " ',
                         ),
+                        // child: CustomCircleLoading(
+                        //   color: Colors.white,
+                        // ),
                       );
                     }
                   },

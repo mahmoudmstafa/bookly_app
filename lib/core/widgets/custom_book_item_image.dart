@@ -12,7 +12,7 @@ class CustomBookItemImage extends StatelessWidget {
     super.key,
     required this.aspectRatio,
     this.borderRadius,
-    // this.onTap,
+    this.onTap,
     required this.bookModel,
   });
 
@@ -21,12 +21,12 @@ class CustomBookItemImage extends StatelessWidget {
 
   final double? borderRadius;
 
-  // final VoidCallback? onTap;
+  final VoidCallback? onTap;
 
   @override
   Widget build(BuildContext context) {
     return GestureDetector(
-      onTap: () {
+      onTap: onTap ?? () {
         navigateToBookDetailsView();
       },
       child: AspectRatio(
