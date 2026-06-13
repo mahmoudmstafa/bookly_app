@@ -2,7 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 
-import '../models/book_model.dart';
+import '../entities/book_entity.dart';
 import '../routes/app_pages.dart';
 import '../utils/constant.dart';
 import 'custom_cached_network_image.dart';
@@ -13,10 +13,10 @@ class CustomBookItemImage extends StatelessWidget {
     required this.aspectRatio,
     this.borderRadius,
     this.onTap,
-    required this.bookModel,
+    required this.bookEntity,
   });
 
-  final BookModel bookModel;
+  final BookEntity bookEntity;
   final double aspectRatio;
 
   final double? borderRadius;
@@ -36,7 +36,7 @@ class CustomBookItemImage extends StatelessWidget {
             borderRadius ?? 16,
           ),
           child: CustomCachedNetworkImage(
-            imageUrl: bookModel.image ?? kImageUrl,
+            imageUrl: bookEntity.coverImageUrl,
           ),
         ),
       ),
@@ -46,7 +46,7 @@ class CustomBookItemImage extends StatelessWidget {
   void navigateToBookDetailsView() {
     Get.toNamed(
       AppPages.details,
-      arguments: bookModel,
+      arguments: bookEntity,
     );
   }
 }

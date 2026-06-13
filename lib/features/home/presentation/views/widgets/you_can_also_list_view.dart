@@ -30,7 +30,7 @@ class YouCanAlsoLikeListView extends StatelessWidget {
                   separatorBuilder: (_, _) => const SizedBox(width: 6),
                   itemBuilder: (context, index) {
                     return CustomBookItemImage(
-                      bookModel: state.books[index],
+                      bookEntity: state.books[index],
                       borderRadius: 8,
                       aspectRatio: 70 / 112,
                     );

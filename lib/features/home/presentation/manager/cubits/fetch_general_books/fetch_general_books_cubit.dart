@@ -1,24 +1,35 @@
 import 'package:bookly_app/features/home/data/repos/home_repo_imp.dart';
+import 'package:bookly_app/features/home/domin/enities/book_entity.dart';
 import 'package:dartz/dartz.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:meta/meta.dart';
 
+import '../../../../../../core/entities/book_entity.dart';
 import '../../../../../../core/errors/failure.dart';
-import '../../../../../../core/models/book_model.dart';
+import '../../../../domin/use_cases/fetch_general_books_use_case.dart';
 
 part 'fetch_general_books_state.dart';
 
 class FetchGeneralBooksCubit extends Cubit<FetchGeneralBooksState> {
-  FetchGeneralBooksCubit(this.homeRepoImp) : super(FetchGeneralBooksInitial());
+  FetchGeneralBooksCubit(this.fetchGeneralBooksUseCase)
+    : super(FetchGeneralBooksInitial());
 
-  final HomeRepoImp homeRepoImp;
+  final FetchGeneralBooksUseCase fetchGeneralBooksUseCase;
 
-  Future<void> fetchGeneralBooks() async {
-    emit(
-      FetchGeneralBooksLoading(),
-    );
-
-    Either<Failure, List<BookModel>> result = await homeRepoImp.fetchGeneralBooks();
+  Future<void> fetchGeneralBooks({ int pageNumber = 1}) async {
+    if (pageNumber == 1) {
+      emit(
+        FetchGeneralBooksLoading(),
+      );
+    } else {
+      emit(
+        FetchGeneralBooksPaginationLoading(),
+      );
+    }
+    Either<Failure, List<BookEntity>> result = await fetchGeneralBooksUseCase
+        .call(
+          param: pageNumber,
+        );
     result.fold(
       (failure) => emit(
         FetchGeneralBooksFailure(

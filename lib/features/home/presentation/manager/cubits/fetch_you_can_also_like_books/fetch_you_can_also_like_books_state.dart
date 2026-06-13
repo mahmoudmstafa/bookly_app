@@ -7,7 +7,7 @@ final class FetchYouCanAlsoLikeBooksInitial extends FetchYouCanAlsoLikeBooksStat
 final class FetchYouCanAlsoLikeBooksLoading extends FetchYouCanAlsoLikeBooksState {}
 final class FetchYouCanAlsoLikeBooksSuccess extends FetchYouCanAlsoLikeBooksState
 {
-  final List<BookModel> books;
+  final List<BookEntity> books;
 
   FetchYouCanAlsoLikeBooksSuccess({required this.books});
 }

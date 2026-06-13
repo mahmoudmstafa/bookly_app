@@ -1,6 +1,8 @@
 import 'package:cached_network_image/cached_network_image.dart';
 import 'package:flutter/material.dart';
 
+import '../utils/constant.dart';
+
 // flutter pub add cached_network_image
 class CustomCachedNetworkImage extends StatelessWidget {
   const CustomCachedNetworkImage({
@@ -18,8 +20,12 @@ class CustomCachedNetworkImage extends StatelessWidget {
       imageUrl: imageUrl,
       fit: BoxFit.cover,
       placeholder: (context, url) => const Center(
-        child: CircularProgressIndicator(
-          color: Colors.white,
+        child: SizedBox(
+          width: 25,
+          height: 25,
+          child: CircularProgressIndicator(
+            color: Colors.white,
+          ),
         ),
       ),
 

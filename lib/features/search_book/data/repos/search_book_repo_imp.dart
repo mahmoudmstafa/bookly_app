@@ -1,39 +1,47 @@
-import 'package:bookly_app/core/errors/failure.dart';
-import 'package:bookly_app/core/models/book_model.dart';
-import 'package:bookly_app/core/service/api_service.dart';
-import 'package:bookly_app/features/search_book/data/repos/search_book_repo.dart';
+import 'dart:developer';
+
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-class SearchBookRepoImp implements SearchBookRepo {
-  SearchBookRepoImp(this.apiService);
+import '../../../../../core/entities/book_entity.dart';
+import '../../../../core/errors/failure.dart';
+import '../../../home/domin/enities/book_entity.dart';
+import '../../domain/repos/search_book_repo.dart';
+import '../data_sources/search_book_remote_data_source/search_book_remote_data_source.dart';
+import '../data_sources/search_book_remote_data_source/search_book_remote_data_source_imp.dart';
 
-  ApiService apiService;
+class SearchBookRepoImp implements SearchBookRepo {
+  final SearchBookRemoteDataSource searchBookRemoteDataSource;
+
+  SearchBookRepoImp({
+    required this.searchBookRemoteDataSource,
+  });
 
   @override
-  Future<Either<Failure, List<BookModel>>> searchBook({
+  Future<Either<Failure, List<BookEntity>>> searchBook({
     required String query,
+    required int pageNumber,
   }) async {
     try {
-      Map<String, dynamic> data = await apiService.get(endPoint: 'q=$query');
+      var remoteData = await searchBookRemoteDataSource.searchBook(
+        query: query,
+        pageNumber: 1,
+      );
+      return right(remoteData);
+    } catch (e, stackTrace) {
+      log('err --> $e');
+      log('stackTrace --> $stackTrace');
 
-      List<BookModel> books = [];
-      for (var book in data['docs']) {
-        books.add(
-          BookModel.fromJson(
-            book,
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(
+            e,
           ),
         );
       }
-      return right(books);
-    } on DioException catch (e) {
-      return left(
-        ServerFailure.fromDioError(e),
-      );
-    } catch (e) {
       return left(
         ServerFailure(
-          errMessage: 'Ops there was an error ! Please try again .',
+          errMessage: e.toString(),
         ),
       );
     }

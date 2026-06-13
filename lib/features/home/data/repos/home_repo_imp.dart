@@ -1,96 +1,104 @@
-import 'dart:developer';
-
-import 'package:bookly_app/core/errors/failure.dart';
-import 'package:bookly_app/core/service/api_service.dart';
-
-
 import 'package:dartz/dartz.dart';
 import 'package:dio/dio.dart';
 
-import '../../../../core/models/book_model.dart';
-import 'home_repo.dart';
+import '../../../../../core/entities/book_entity.dart';
+import '../../../../core/errors/failure.dart';
+import '../../domin/repos/home_repo.dart';
+import '../data_sources/home_local_data_source/home_local_data_source.dart';
+import '../data_sources/home_remote_data_source/home_remote_data_source.dart';
 
-class HomeRepoImp implements HomeRepo {
-  HomeRepoImp(this.apiService);
+class HomeRepoImpl implements HomeRepo {
+  final HomeRemoteDataSource homeRemoteDataSource;
 
-  final ApiService apiService;
+  final HomeLocalDataSource homeLocalDataSource;
+
+  HomeRepoImpl({
+    required this.homeRemoteDataSource,
+    required this.homeLocalDataSource,
+  });
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchGeneralBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchGeneralBooks({
+    required int pageNumber,
+  }) async {
     try {
-      Map<String, dynamic> data = await apiService.get(endPoint: 'q=general');
-      List<BookModel> books = [];
-      for (var book in data['docs']) {
-        books.add(BookModel.fromJson(book));
+      var localBooks = homeLocalDataSource.getLocalGeneralBooks(
+        pageNumber: pageNumber,
+      );
+      if (localBooks.isNotEmpty) {
+        return right(localBooks);
       }
-      return right(books);
-    } on DioException catch (e) {
-      return left(
-        ServerFailure.fromDioError(e),
+      var remoteBooks = await homeRemoteDataSource.fetchGeneralBooks(
+        pageNumber: pageNumber,
       );
+      return right(remoteBooks);
     } catch (e) {
-      log(
-        'the error is -->$e',
-      );
-      return left(
-        ServerFailure(
-          errMessage: 'Ops there was an error ! Please try again .',
-        ),
-      );
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e),
+        );
+      } else {
+        return left(
+          Failure(
+            errMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchLatestBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchLatestBooks({
+    required int pageNumber,
+  }) async {
     try {
-      Map<String, dynamic> data = await apiService.get(
-        endPoint: 'q=history',
+
+      var localBooks = homeLocalDataSource.getLocalLatestBooks(
+        pageNumber: pageNumber,
       );
-      List<BookModel> books = [];
-      for (var book in data['docs']) {
-        books.add(BookModel.fromJson(book));
+      if (localBooks.isNotEmpty) {
+        return right(localBooks);
       }
-      return right(books);
-    } on DioException catch (e) {
-      return left(
-        ServerFailure.fromDioError(e),
+      var remoteBooks = await homeRemoteDataSource.fetchLatestBooks(
+        pageNumber: pageNumber,
       );
+      return right(remoteBooks);
     } catch (e) {
-      log(
-        'the error is -->$e',
-      );
-      return left(
-        ServerFailure(
-          errMessage: 'Ops there was an error ! Please try again .',
-        ),
-      );
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e),
+        );
+      } else {
+        return left(
+          Failure(
+            errMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 
   @override
-  Future<Either<Failure, List<BookModel>>> fetchYouCanAlsoLikeBooks() async {
+  Future<Either<Failure, List<BookEntity>>> fetchYouCanAlsoLikeBooks() async {
     try {
-      Map<String, dynamic> data = await apiService.get(
-        endPoint: 'q=programming',
-      );
-      List<BookModel> books = [];
-      for (var book in data['docs']) {
-        books.add(BookModel.fromJson(book));
+      var remoteBooks = await homeRemoteDataSource.fetchYouCanAlsoLikeBooks();
+      var localBooks = homeLocalDataSource.getYouCanAlsoLikeBooks();
+      if (localBooks.isEmpty) {
+        return right(remoteBooks);
       }
-      return right(books);
-    } on DioException catch (e) {
-      return left(
-        ServerFailure.fromDioError(e),
-      );
+      return right(localBooks);
     } catch (e) {
-      log(
-        'the error is -->$e',
-      );
-      return left(
-        ServerFailure(
-          errMessage: 'Ops there was an error ! Please try again .',
-        ),
-      );
+      if (e is DioException) {
+        return left(
+          ServerFailure.fromDioError(e),
+        );
+      } else {
+        return left(
+          Failure(
+            errMessage: e.toString(),
+          ),
+        );
+      }
     }
   }
 }

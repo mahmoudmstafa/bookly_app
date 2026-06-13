@@ -8,7 +8,7 @@ final class FetchGeneralBooksInitial extends FetchGeneralBooksState {}
 final class FetchGeneralBooksLoading extends FetchGeneralBooksState {}
 
 final class FetchGeneralBooksSuccess extends FetchGeneralBooksState {
-  final List<BookModel> books;
+  final List<BookEntity> books;
 
   FetchGeneralBooksSuccess({required this.books});
 }
@@ -18,3 +18,4 @@ final class FetchGeneralBooksFailure extends FetchGeneralBooksState {
 
   FetchGeneralBooksFailure({required this.errMessage});
 }
+final class FetchGeneralBooksPaginationLoading extends FetchGeneralBooksState {}

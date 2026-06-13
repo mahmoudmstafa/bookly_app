@@ -1,3 +1,5 @@
+import 'dart:developer';
+
 import 'package:bookly_app/core/widgets/custom_error_message.dart';
 import 'package:bookly_app/core/widgets/custom_text_loading.dart';
 import 'package:flutter/material.dart';
@@ -5,15 +7,19 @@ import 'package:flutter_bloc/flutter_bloc.dart' show BlocProvider, BlocBuilder;
 import 'package:get/get_core/src/get_main.dart';
 import 'package:get/get_navigation/src/extension_navigation.dart';
 import 'package:get/get_navigation/src/routes/transitions_type.dart';
+import 'package:hive/hive.dart';
 
+import '../../../../../core/entities/book_entity.dart';
 import '../../../../../core/utils/app_styles.dart';
 import '../../../../../core/utils/constant.dart';
 import '../../../../../core/utils/resource.dart';
 import '../../../../../core/widgets/custom_appbar.dart';
+import '../../../../home/domin/enities/book_entity.dart';
 import '../../../../home/presentation/views/home_view.dart';
 import '../../../../home/presentation/views/widgets/latest_books_item_sliver_list.dart';
 import '../../manager/cubits/search_book_cubit/search_book_cubit.dart';
 import 'custom_text_form_field.dart';
+import 'latest_books_item_sliver_list_bloc_builder.dart';
 
 class SearchBookViewBody extends StatefulWidget {
   const SearchBookViewBody({super.key});
@@ -24,6 +30,25 @@ class SearchBookViewBody extends StatefulWidget {
 
 class _SearchBookViewBodyState extends State<SearchBookViewBody> {
   String? dataFromUser;
+
+  late ScrollController scrollController;
+  bool isLoading = false;
+
+  int pageNumber = 2;
+
+  @override
+  void initState() {
+    super.initState();
+
+    scrollController = ScrollController();
+    paginationData();
+  }
+
+  @override
+  void dispose() {
+    scrollController.dispose();
+    super.dispose();
+  }
 
   @override
   Widget build(BuildContext context) {
@@ -40,11 +65,13 @@ class _SearchBookViewBodyState extends State<SearchBookViewBody> {
             rightIcon: AppImages.assetsImagesGroup2Svg,
           ),
           CustomTextFormField(
-            onSubmitted: (data) {
+            onSubmitted: (data) async {
               dataFromUser = data;
               BlocProvider.of<SearchBookCubit>(context).searchBook(
                 query: data ?? 'general',
               );
+              var box = Hive.box<BookEntity>(resultsBook);
+              await box.clear();
             },
             hintText: 'Search',
             enabledBorderColor: Colors.white,
@@ -62,41 +89,11 @@ class _SearchBookViewBodyState extends State<SearchBookViewBody> {
           ),
           Expanded(
             child: CustomScrollView(
+              controller: scrollController,
               physics: const BouncingScrollPhysics(),
               slivers: [
-                BlocBuilder<SearchBookCubit, SearchBookState>(
-                  builder: (context, state) {
-                    if (state is SearchBookInitial) {
-                      return SliverToBoxAdapter(
-                        child: Center(
-                          child: Text(
-                            'Search for a book',
-                            style: AppStyles.montserrat20Bold(context),
-                          ),
-                        ),
-                      );
-                    } else if (state is SearchBookSuccess) {
-                      return LatestBooksItemSliverList(
-                        books: state.books,
-                      );
-                    } else if (state is SearchBookFailure) {
-                      return SliverToBoxAdapter(
-                        child: CustomErrorMessage(
-                          errMessage: state.errMessage,
-                        ),
-                      );
-                    } else {
-                      return SliverToBoxAdapter(
-                        child: CustomTextLoading(
-                          messageLoading:
-                              'Please Wait ... \n Loading search result ! \n " $dataFromUser " ',
-                        ),
-                        // child: CustomCircleLoading(
-                        //   color: Colors.white,
-                        // ),
-                      );
-                    }
-                  },
+                LatestBooksItemSliverListBlocBuilder(
+                  dataFromUser: dataFromUser,
                 ),
               ],
             ),
@@ -111,6 +108,26 @@ class _SearchBookViewBodyState extends State<SearchBookViewBody> {
       const HomeView(),
       transition: Transition.cupertinoDialog,
       duration: kDuration,
+    );
+  }
+
+  Future<void> paginationData() async {
+    scrollController.addListener(
+      () async {
+        double currentScroll = scrollController.position.pixels;
+        double maxScroll = scrollController.position.maxScrollExtent;
+        if (currentScroll >= maxScroll * 0.7 - 200 && !isLoading) {
+          isLoading = true;
+          await BlocProvider.of<SearchBookCubit>(
+            context,
+          ).searchBook(
+            query: dataFromUser ?? 'general',
+            pageNumber: pageNumber,
+          );
+          pageNumber++;
+          isLoading = false;
+        }
+      },
     );
   }
 }
